@@ -173,7 +173,7 @@ export default function HomePage() {
             href="mailto:contacto@pcgpropiedades.com"
             className="inline-block px-8 py-3 rounded-full text-white font-semibold text-sm bg-[#C41E1E] hover:bg-[#a01818] transition-colors"
           >
-            Contactar a un ejecutivo
+            Contáctanos
           </a>
         </div>
       </section>
