@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import HeroSection from "@/components/HeroSection";
 import PropertyGrid from "@/components/PropertyGrid";
 import { getPropertiesByType } from "@/data/properties";
+import { getPropertiesFromOneDrive } from "@/lib/onedrive";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Arriendo",
@@ -9,8 +12,17 @@ export const metadata: Metadata = {
     "Encuentra tu próximo hogar en arriendo en Santiago. Departamentos, casas y más en las mejores comunas de la Región Metropolitana.",
 };
 
-export default function ArriendoPage() {
-  const properties = getPropertiesByType("arriendo");
+export default async function ArriendoPage() {
+  let properties = getPropertiesByType("arriendo");
+
+  if (process.env.ONEDRIVE_USER_UPN) {
+    try {
+      const fromOneDrive = await getPropertiesFromOneDrive("arriendo");
+      if (fromOneDrive.length > 0) properties = fromOneDrive;
+    } catch (err) {
+      console.error("[OneDrive] Error al cargar propiedades en arriendo:", err);
+    }
+  }
 
   return (
     <>
@@ -21,7 +33,6 @@ export default function ArriendoPage() {
       />
 
       <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Filter bar placeholder — se conectará al CMS */}
         <div className="flex flex-wrap gap-3 mb-8">
           {["Todas las comunas", "1-2 dorms.", "3+ dorms.", "Hasta $500.000", "$500k–$1M", "+$1M"].map(
             (label) => (

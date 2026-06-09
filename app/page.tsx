@@ -2,6 +2,9 @@ import Link from "next/link";
 import PropertyGrid from "@/components/PropertyGrid";
 import HeroCarousel from "@/components/HeroCarousel";
 import { getFeaturedProperties } from "@/data/properties";
+import { getFeaturedPropertiesFromOneDrive } from "@/lib/onedrive";
+
+export const revalidate = 60;
 
 const services = [
   {
@@ -73,8 +76,17 @@ const stats = [
   { value: "90%", label: "Tasa de ocupación" },
 ];
 
-export default function HomePage() {
-  const featured = getFeaturedProperties();
+export default async function HomePage() {
+  let featured = getFeaturedProperties();
+
+  if (process.env.ONEDRIVE_USER_UPN) {
+    try {
+      const fromOneDrive = await getFeaturedPropertiesFromOneDrive();
+      if (fromOneDrive.length > 0) featured = fromOneDrive;
+    } catch (err) {
+      console.error("[OneDrive] Error al cargar propiedades destacadas:", err);
+    }
+  }
 
   return (
     <>

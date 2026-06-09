@@ -1,0 +1,17 @@
+{
+  "id": "ven-001",
+  "title": "Departamento en Barrio Italia",
+  "type": "venta",
+  "price": 3800,
+  "currency": "UF",
+  "address": "Calle Condell 456, Piso 4",
+  "commune": "Providencia",
+  "region": "Región Metropolitana",
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "area": 68,
+  "parking": 1,
+  "description": "Excelente departamento en el corazón del Barrio Italia. Edificio de años con sello y carácter. Ideal como inversión o residencia propia.",
+  "features": ["Orientación norte", "Bodega", "Certificación energética D"],
+  "featured": true
+}
