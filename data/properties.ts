@@ -125,7 +125,11 @@ export const properties: Property[] = [
       "Internet",
       "Bodega",
     ],
-    images: ["/images/placeholder-house.jpg"],
+    images: [
+      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
+      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800",
+    ],
     featured: true,
   },
   {

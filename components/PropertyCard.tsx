@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Property, formatPrice } from "@/data/properties";
 
 interface PropertyCardProps {
@@ -17,21 +18,34 @@ export default function PropertyCard({ property }: PropertyCardProps) {
     bathrooms,
     area,
     features,
+    images,
   } = property;
+
+  const mainImage = images?.[0];
 
   const href = `/${type}/${id}`;
 
   return (
     <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow overflow-hidden flex flex-col group">
-      {/* Image placeholder */}
+      {/* Image */}
       <div className="relative h-48 bg-gray-100 overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <svg className="w-16 h-16 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1}
-              d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-            <polyline strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} points="9 22 9 12 15 12 15 22"/>
-          </svg>
-        </div>
+        {mainImage ? (
+          <Image
+            src={mainImage}
+            alt={title}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <svg className="w-16 h-16 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1}
+                d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+        )}
 
         {/* Type badge */}
         <div
