@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Property, formatPrice } from "@/data/properties";
+import PropertyGallery from "./PropertyGallery";
 
 interface PropertyDetailProps {
   property: Property;
@@ -13,8 +13,6 @@ export default function PropertyDetail({ property, backHref, backLabel }: Proper
     title, type, price, currency, address, commune, region,
     bedrooms, bathrooms, area, totalArea, parking, description, features, images,
   } = property;
-
-  const [mainImage, ...thumbImages] = images ?? [];
 
   return (
     <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -29,54 +27,7 @@ export default function PropertyDetail({ property, backHref, backLabel }: Proper
         {backLabel}
       </Link>
 
-      {/* Image gallery */}
-      <div className="mb-8">
-        {/* Main image */}
-        <div className="relative w-full h-72 md:h-[480px] bg-gray-100 rounded-2xl overflow-hidden mb-3">
-          {mainImage ? (
-            <Image
-              src={mainImage}
-              alt={title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 1152px"
-              priority
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <svg className="w-20 h-20 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1}
-                  d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-              </svg>
-            </div>
-          )}
-          {images && images.length > 1 && (
-            <span className="absolute bottom-3 right-3 bg-black/60 text-white text-xs px-2.5 py-1 rounded-full">
-              1 / {images.length}
-            </span>
-          )}
-        </div>
-
-        {/* Thumbnail strip — horizontal scroll */}
-        {thumbImages.length > 0 && (
-          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
-            {thumbImages.map((src, i) => (
-              <div
-                key={src}
-                className="relative shrink-0 w-28 h-20 md:w-36 md:h-24 bg-gray-100 rounded-lg overflow-hidden"
-              >
-                <Image
-                  src={src}
-                  alt={`${title} foto ${i + 2}`}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-200"
-                  sizes="144px"
-                />
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+      <PropertyGallery images={images ?? []} title={title} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main content */}
