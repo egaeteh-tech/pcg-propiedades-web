@@ -37,7 +37,7 @@ export const properties: Property[] = [
       "Luminoso departamento con terminaciones de primera calidad. Cocina americana equipada, logia y vista despejada. Edificio con gimnasio y piscina.",
     features: ["Amoblado", "Gym", "Piscina", "Conserje 24/7", "Bodega"],
     images: ["/images/placeholder-apt.jpg"],
-    featured: true,
+    featured: false,
   },
   {
     id: "arr-002",
@@ -56,7 +56,7 @@ export const properties: Property[] = [
       "Casa en condominio privado con jardín y terraza. Amplia cocina, living-comedor con doble altura y patio trasero. Barrio tranquilo y bien conectado.",
     features: ["Jardín", "Terraza", "Condominio privado", "Quincho"],
     images: ["/images/placeholder-house.jpg"],
-    featured: true,
+    featured: false,
   },
   {
     id: "arr-003",
@@ -94,7 +94,7 @@ export const properties: Property[] = [
       "Espectacular departamento con vista a los Andes. Terminaciones premium, cocina de diseño y terraza propia. Edificio boutique con valet parking.",
     features: ["Terraza propia", "Valet parking", "Bodega", "Vista cerros"],
     images: ["/images/placeholder-apt.jpg"],
-    featured: true,
+    featured: false,
   },
   {
     id: "ven-001",
@@ -162,7 +162,7 @@ export const properties: Property[] = [
       "Terraza común",
     ],
     images: ["/images/placeholder-apt.jpg"],
-    featured: false,
+    featured: true,
   },
   {
     id: "ven-004",
