@@ -30,15 +30,16 @@ export default function PropertyDetail({ property, backHref, backLabel }: Proper
       </Link>
 
       {/* Image gallery */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8 rounded-2xl overflow-hidden">
-        <div className="md:col-span-2 relative h-72 md:h-96 bg-gray-100">
+      <div className="mb-8">
+        {/* Main image */}
+        <div className="relative w-full h-72 md:h-[480px] bg-gray-100 rounded-2xl overflow-hidden mb-3">
           {mainImage ? (
             <Image
               src={mainImage}
               alt={title}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, 66vw"
+              sizes="(max-width: 768px) 100vw, 1152px"
               priority
             />
           ) : (
@@ -49,30 +50,32 @@ export default function PropertyDetail({ property, backHref, backLabel }: Proper
               </svg>
             </div>
           )}
+          {images && images.length > 1 && (
+            <span className="absolute bottom-3 right-3 bg-black/60 text-white text-xs px-2.5 py-1 rounded-full">
+              1 / {images.length}
+            </span>
+          )}
         </div>
 
-        <div className="hidden md:grid grid-rows-2 gap-3">
-          {[0, 1].map((i) => (
-            <div key={i} className="relative bg-gray-100 rounded-sm overflow-hidden">
-              {thumbImages[i] ? (
+        {/* Thumbnail strip — horizontal scroll */}
+        {thumbImages.length > 0 && (
+          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+            {thumbImages.map((src, i) => (
+              <div
+                key={src}
+                className="relative shrink-0 w-28 h-20 md:w-36 md:h-24 bg-gray-100 rounded-lg overflow-hidden"
+              >
                 <Image
-                  src={thumbImages[i]}
+                  src={src}
                   alt={`${title} foto ${i + 2}`}
                   fill
-                  className="object-cover"
-                  sizes="33vw"
+                  className="object-cover hover:scale-105 transition-transform duration-200"
+                  sizes="144px"
                 />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <svg className="w-10 h-10 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1}
-                      d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-                  </svg>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
