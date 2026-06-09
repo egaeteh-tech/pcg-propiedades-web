@@ -11,7 +11,8 @@ export interface Property {
   region: string;
   bedrooms: number;
   bathrooms: number;
-  area: number; // m²
+  area: number;       // superficie útil m²
+  totalArea?: number; // superficie total m²
   parking: number;
   description: string;
   features: string[];
@@ -98,21 +99,33 @@ export const properties: Property[] = [
   },
   {
     id: "ven-001",
-    title: "Departamento en Barrio Italia",
+    title: "Casa Pudahuel 5D 3B",
     type: "venta",
-    price: 3800,
+    price: 4900,
     currency: "UF",
-    address: "Calle Condell 456, Piso 4",
-    commune: "Providencia",
+    address: "Pudahuel, Santiago",
+    commune: "Pudahuel",
     region: "Región Metropolitana",
-    bedrooms: 2,
-    bathrooms: 1,
-    area: 68,
-    parking: 1,
+    bedrooms: 5,
+    bathrooms: 3,
+    area: 121,
+    totalArea: 162,
+    parking: 2,
     description:
-      "Excelente departamento en el corazón del Barrio Italia. Edificio de años con sello y carácter. Ideal como inversión o residencia propia.",
-    features: ["Orientación norte", "Bodega", "Certificación energética D"],
-    images: ["/images/placeholder-apt.jpg"],
+      "Casa muy amplia con excelente conectividad, cercana a áreas verdes, plazas, colegios, centros comerciales y supermercados. Primer piso: amplio living-comedor, cocina amoblada, dormitorio principal con closet y en suite, segundo dormitorio, baño completo, estacionamiento y terraza. Segundo piso: tres dormitorios adicionales y baño con tina.",
+    features: [
+      "Jardín",
+      "Terraza",
+      "Patio",
+      "Closets",
+      "Dormitorio en suite",
+      "Cocina amoblada",
+      "2 pisos",
+      "Gas natural",
+      "Internet",
+      "Bodega",
+    ],
+    images: ["/images/placeholder-house.jpg"],
     featured: true,
   },
   {
